@@ -3,198 +3,121 @@
     padding: 0;
     box-sizing: border-box;
 }
-.container{
+body{
     height: 100vh;
     width: 100vw;
-    background: #EECDA3;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #EF629F, #EECDA3);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #EF629F, #EECDA3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  display: flex;
-  flex-direction: column;
-  position: relative;
+    overflow: hidden;
+    background: #a8ff78;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #78ffd6, #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* overflow-y: auto;
+overflow-x: hidden; */
 }
-.main{
-    /* max-height: ; */
+.container{
+    width: 800px;
     max-height: 100vh;
-    width:600px;
-    background-color: white;
-    margin: auto auto;
+    min-height: 400px;
+ background-color: red;
+ padding: 10px;
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50% ,-50%);
+ border-radius: 10px;
+ /* transform: translate(-100%,-100%); */
+ 
+ /* transform: translateY(-50%); */
+ /* overflow: hidden; */
+ overflow-y: auto;
+}
+.gate{
+    transform: translate(100%);
+}
+.upper{
     display: flex;
-    /* flex-direction: column; */
-    position: relative;
+    padding: 0 0 15px 0;
 }
-.git{
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-}
-/* .image{
-    max-width: 50%;
-    max-height: 100%;
+.image{
+    width: 200px;
+    height: 200px;
     margin-right: 10px;
-    /* flex-basis: ; */
-    /* background-color: green; */
-    /* opacity: .5; */
-    /* background: linear-gradient(to bottom, #ff6e7f 0%, #ff6e7f  100%,  #bfe9ff 100%); */
-    /* background-color: transparent; */
-/* } */ */
- /* img{
-    max-height: 100vh;
-    width:700px;
-}  */
-.content{
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.divider{
+    margin-bottom: 15px;
+    color: green;
+    background-color: green;
+}
+.btn{
+    max-width: 300px;
+    max-height: auto;
+    padding:10px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size:20px;
+    color: green;
+    /* animation:  color 1s ; */
+    transition: color .5s linear;
+    margin: 5px;
+}
+.btn:hover{
+           color: white;
+           background-color: black;
+}
+.bio{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    color: white;
 }
-.projectss{
- color: rgb(34, 202, 62);
- padding: 3px 0 5px 0;
- text-align: center;
- animation:  animate3 1s infinite alternate-reverse;
- position: relative;
- width: 100px;
-}
-.projectss::after{
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: red;
-    bottom: 0;
-    left: 0;
-    animation-delay: 1s;
-    animation:  animate 1s infinite linear alternate-reverse;
-    
-}
-.projectss::before{
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: red;
-    top: 0;
-    left: 0;
-    animation:  animate1 1s infinite linear alternate-reverse;
-    /* margin-top: 10px; */
-}
-@keyframes animate{
-    0%{
-        width: 0%;
-        background-color: green;
-    }
-    100%{
-        width: 100%;
-        background-color: white;
-    }
-}
-@keyframes animate1{
-    0%{
-        width: 0%;
-        background-color: rgb(233, 236, 41);
-    }
-    100%{
-        width: 100%;
-        background-color: rgb(27, 47, 230);
-    }
-}
-@keyframes animate3{
-    0%{
-        color: violet;
-    }
-    50%{
-        color: green;
-    }
-    100%{
-        color: red;
-    }
-}
-.projects{
+.lower{
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    /* overflow-y: scroll; */
 }
-button{
-    /* max-width: 100%;
-    height: 30px;
-    padding: 4px;
-    cursor: pointer;
-    margin: 5px; */
-  /* animation:  all 2s linear; */
+.hidden{
+    display: none;
 }
-a{
-    list-style-type: none;
-    background-color: transparent;
-    color: transparent;
-    /* pointer-events: none; */
+.beforemain{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
-
-button {background-image: linear-gradient(to right, #ff6e7f 0%, #bfe9ff  51%, #ff6e7f  100%)}
-button {
-   margin: 4px;
-   padding: 10px 10px;
-   text-align: center;
-   text-transform: uppercase;
-   transition: 1s;
-   background-size: 200% auto;
-   color: white;            
-   box-shadow: 0 0 20px #eee;
-   border-radius: 10px;
-   /* display: block; */
-   cursor: pointer;
- }
-
- button:hover {
-   background-position: right center; /* change the direction of the change here */
-   color: rgb(78, 80, 204);
-   text-decoration: none;
-   z-index: 3;
-   position: relative;
- }
- .heading{
-     color: green;
-     font-size: 1rem;
- }
- .name{
-     font-size: 1rem;
-     color: blue;
- }
- .bio{
-     font-size: 1rem;
-     color:tomato;
-     margin: 10px 0 10px 0;
- }
- .main::after{
-     content: '';
-     position: absolute;
-     background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png);
-     top: 88px;
-     left: 0;
-     height: 80%;
-     width: 100%;
-     opacity: .6;
-     pointer-events: none;
-     background-repeat: repeat-y;
-     /* object-position: -50% -50%; */
-     object-fit: cover;
-     /* height: 100vh;
-    width:700px; */
- }
- /* button:hover{
-     /* color: red; */
-    
- /* } */ 
- #text{
-     position: absolute;
-     left: 50%;
-     transform: translate(-50%);
-     top: 100px;
-     width: 200px;
-     height: 30px;
-     border-radius: 5px;
-     color: green;
-     letter-spacing: 2px;
-     outline: none;
-     border: none;
-     box-shadow: 0 0 5px 0 white;
-     padding: 2px;
- }
+.heading{
+   font-size: 2rem;
+   color: white;
+}
+.form{
+    width: 50%;
+    height: 100px;
+    padding: 20px;
+}
+.text{
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    color: red;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: width .5s linear;
+}
+input::placeholder{
+    color: green;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+.text:focus{
+    width: 200%;
+}
+.reload{
+    position: absolute;
+    top: 50%;
+    right: 100px;
+}
