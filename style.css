@@ -14,7 +14,7 @@ background: linear-gradient(to right, #78ffd6, #a8ff78); /* W3C, IE 10+/ Edge, F
 overflow-x: hidden; */
 }
 .container{
-    width: 800px;
+    max-width: 800px;
     max-height: 100vh;
     min-height: 400px;
  background-color: red;
@@ -28,10 +28,12 @@ overflow-x: hidden; */
  
  /* transform: translateY(-50%); */
  /* overflow: hidden; */
+ /* opacity: 1; */
+ margin: 10px;
  overflow-y: auto;
 }
 .gate{
-    transform: translate(100%);
+    transform: translate(100000%);
 }
 .upper{
     display: flex;
@@ -87,10 +89,11 @@ img{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    z-index:1;
 }
 .heading{
-   font-size: 2rem;
-   color:rgb(25, 28, 236)
+   font-size: 1.5rem;
+   color:rgb(124, 126, 240)
 }
 .form{
     width: 50%;
@@ -139,8 +142,15 @@ input::placeholder{
   }
   .hidden{
     display: none;
+    /* pointer-events: none; */
 }
 
 span{
     color: rgb(122, 221, 29);
+}
+.createds{
+    color: black;
+}
+.names{
+    color: rgb(39, 55, 202);
 }
