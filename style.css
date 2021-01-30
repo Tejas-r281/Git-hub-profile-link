@@ -81,9 +81,7 @@ img{
     flex-wrap: wrap;
     /* overflow-y: scroll; */
 }
-.hidden{
-    display: none;
-}
+
 .beforemain{
     position: absolute;
     top: 50%;
@@ -92,7 +90,7 @@ img{
 }
 .heading{
    font-size: 2rem;
-   color: white;
+   color:rgb(25, 28, 236)
 }
 .form{
     width: 50%;
@@ -107,6 +105,8 @@ img{
     font-size: 1rem;
     letter-spacing: 1px;
     transition: width .5s linear;
+    border-radius: 10px;
+    border: none;
 }
 input::placeholder{
     color: green;
@@ -118,6 +118,29 @@ input::placeholder{
 }
 .reload{
     position: absolute;
-    top: 50%;
+    top: 10%;
     right: 100px;
+    /* height: 10px; */
+}
+.loading {
+    display: block;
+    content: "loading";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(245, 231, 231, 0.5);
+    background-image: url("https://i.stack.imgur.com/MnyxU.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    /* display: none; */
+  }
+  .hidden{
+    display: none;
+}
+
+span{
+    color: rgb(122, 221, 29);
 }
