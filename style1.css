@@ -2,13 +2,13 @@
     width: 100vw;
     height: 100vh;
     background: black;
-    opacity: .9;
+    opacity: .8;
     position: fixed;
     /* pointer-events: none; */
     z-index: 30;
 }
 .cover_content{
-    min-width: 320px;
+    width: 600px;
     max-width: 600px;
     height: 400px;
     background-color: white;
@@ -26,7 +26,7 @@
 .cover_content::after{
     content: '';
     position: absolute;
-    background:  url("https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg") ;
+    /* background:  url("https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg") ; */
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
@@ -39,7 +39,7 @@
     object-fit: cover;
     object-position: center;
     opacity: .3;
-    
+
     pointer-events: none;
 }
 .project_name{
@@ -75,7 +75,7 @@ pointer-events: none;
 .cd{
     color:rgb(69, 45, 206);
     font-size: 1.5rem;
-    letter-spacing: 1px; 
+    letter-spacing: 1px;
 }
 .pn>span{
     color: rgb(15, 17, 1);
