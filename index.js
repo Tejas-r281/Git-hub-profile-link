@@ -48,20 +48,24 @@ text.addEventListener('change', (e) => {
 
 const upper = document.createElement('div')
 upper.setAttribute('class', 'upper');
+
 container.insertAdjacentElement('afterbegin', upper);
 const fork = document.createElement('div')
 fork.setAttribute('class','fork');
+// fork.setAttribute('data-after',"2");
 fork.innerHTML='Fork';
 container.insertAdjacentElement('afterbegin',fork);
 
 const self = document.createElement('div')
 self.setAttribute('class','self');
+// self.setAttribute('data-after',"20");
 self.innerHTML='Self Made';
 container.insertAdjacentElement('afterbegin',self);
 
 // container.insertAdjacentElement('afterbegin',fork);
 const all = document.createElement('div')
 all.setAttribute('class','self all');
+// all.setAttribute('data-after',"20");
 all.innerHTML='All';
 container.insertAdjacentElement('afterbegin',all);
 
@@ -149,7 +153,7 @@ async function setdata(data) {
     // console.log(dates);
     var html = `
     <div class="image">
-        <img src=${data.avatar_url}>
+        <img class='inside_image' src=${data.avatar_url}>
     </div>
     <div class="bio">
 
@@ -160,6 +164,23 @@ async function setdata(data) {
     </div>
 `
     upper.innerHTML = html;
+
+    const image = upper.querySelector('.image');
+    const inside_image= upper.querySelector('.inside_image');
+    image.addEventListener('mousemove',((e)=>{
+        const x = e.offsetX;
+        const y = e.offsetY;
+        const width= inside_image.offsetWidth;
+        const height= inside_image.offsetHeight;
+        const ratiox= x/width*10;
+        const ratioy= y/height*10;
+        inside_image.style.transform = `translate(+${ratiox}% , +${ratioy}%) scale(2)`;
+        console.log(`${x} and ${y}`);
+    }))
+    image.addEventListener('mouseout',(e)=>{
+        inside_image.style.transform='translate(0,0) scale(1)';
+        console.log('out');
+    })
 }
 async function setbutton(data) {
     try {
@@ -167,9 +188,11 @@ async function setbutton(data) {
         const fetchsdata = await fetchs.json();
         // const selfmades = await controller(fetchsdata);
      const selfmades=   await controller(fetchsdata,'All')
-     stickbutton(selfmades);
+     const total_number=selfmades.total_number;
+     stickbutton(selfmades,all);
      all.style.background='black';
      all.style.color='white';
+    //  all.innerHTML= `All <span class="total_number">${total_number}</span>`
      all.classList.add('clicked');
        await getvalue(fetchsdata);
 
@@ -192,7 +215,10 @@ decide.forEach((element)=>{
         element.classList.add('clicked');
         // element.classList.toggle('toggle');
         const selfmades = await controller(data,text);
-        stickbutton(selfmades);
+        // const total_number=selfmades.total_number;
+        // element.innerHTML=`${text} <span class="total_number">${total_number}<span>`;
+        // console.log(element);
+        stickbutton(selfmades,element);
     }))
 })
 }
@@ -201,7 +227,11 @@ function color()
 decide.forEach((element)=>{
      if(element.classList.contains('clicked'))
      {
-         console.log(element.innerHTML);
+        //  const t= element.querySelector('.total_number');
+        //  if(t)
+        //  t.remove();
+        //  console.log(element.innerHTML);
+        element.removeAttribute("data-after");
          element.style.background="red";
          element.style.color="black";
         //  element.classList.remove('clicked');
@@ -212,32 +242,52 @@ decide.forEach((element)=>{
 
 async function controller(data,text) {
     try {
-        console.log(text);
-
+        // console.log(text);
+        var total_number=0;
         const filters = await data.filter((element) => {
             if (text=='All') {
+                total_number = total_number+1;
                 return element;
+
             }
             else if(text=="Fork"&&(element.fork))
-            {
+            {total_number = total_number+1;
                 return element;
             }
             else if(text=='Self Made'&&(!element.fork))
-            {
+            {total_number = total_number+1;
               return element;
             }
 
         })
+        // console.log(total_number);
         return filters;
     } catch (error) {
         console.log(error);
     }
 }
 
-async function stickbutton(data) {
+async function stickbutton(data,ele) {
 
     var obj;
     var html1 = '';
+    // console.log(ele);
+    const corret_length= data.length;
+    if(ele)
+    {
+    if(ele.classList.contains('all'))
+    {
+        all.setAttribute('data-after',corret_length);
+    }
+    else if(ele.classList.contains('self'))
+    {
+        self.setAttribute('data-after',corret_length);
+    }
+    else if(ele.classList.contains('fork'))
+    {
+        fork.setAttribute('data-after',corret_length);
+    }
+}
     data.forEach(element => {
         //    console.log(element);
         html1 += `
@@ -250,7 +300,8 @@ async function stickbutton(data) {
             name: element.name,
             repos: element.html_url,
             git: element.owner.html_url,
-            created:element.created_at
+            created:element.created_at,
+            owner:element.owner,
         }
         }
         details.push(obj);
@@ -269,6 +320,7 @@ dividerline();
 const cover = document.querySelector('.cover');
 const style= document.createElement('style');
 async function fillcover(data, element) {
+    // console.log(element);
     const personal = data[0].my;
     const value = await searchs(data, element);
     // console.log(value);
@@ -287,6 +339,7 @@ document.head.append(style);
 <span class="b">${value.name}</span> </span>
 <span class="cross"><a href="" class="fas fa-2x fa-times"></a></span>
 </div>
+
 <div class="created">
 <span class="cd">Created: &nbsp;</span>
 <span class="b">

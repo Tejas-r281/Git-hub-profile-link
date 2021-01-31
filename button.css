@@ -12,6 +12,8 @@
      cursor: pointer;
      max-width: 200px;
      transition: all .5s linear;
+     z-index: 2999;
+     background-color: burlywood ;
 }
 .fork:hover,.self:hover{
     color:white;
@@ -32,4 +34,34 @@
 }
 .toggle{
     background-color: black;
+}
+
+.all::after,.fork::after,.self::after{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    right: -35px;
+    bottom: 0;
+    background:transparent;
+    /* color: white; */
+    color: white;
+    font-size: .9rem;
+    letter-spacing: .05rem;
+    pointer-events: none;
+    /* padding-right: -10px; */
+    border-radius: 50%;
+
+}
+
+.all::after{
+    content: attr(data-after);
+    /* background: green; */
+}
+.fork::after{
+        content: attr(data-after);
+        /* background: green; */
+}
+.self::after{
+    content: attr(data-after);
 }
