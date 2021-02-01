@@ -45,7 +45,11 @@ text.addEventListener('change', (e) => {
 
 
 })
+const dark_mode = document.createElement('div');
+dark_mode.setAttribute('class','dark_mode');
+dark_mode.innerHTML=`Click repository button for more info`;
 
+// document.body.insertAdjacentElement('afterbegin',dark_mode);
 const upper = document.createElement('div')
 upper.setAttribute('class', 'upper');
 
@@ -54,31 +58,41 @@ const fork = document.createElement('div')
 fork.setAttribute('class','fork');
 // fork.setAttribute('data-after',"2");
 fork.innerHTML='Fork';
-container.insertAdjacentElement('afterbegin',fork);
+// container.insertAdjacentElement('afterbegin',fork);
 
 const self = document.createElement('div')
 self.setAttribute('class','self');
 // self.setAttribute('data-after',"20");
 self.innerHTML='Self Made';
-container.insertAdjacentElement('afterbegin',self);
+// container.insertAdjacentElement('afterbegin',self);
 
 // container.insertAdjacentElement('afterbegin',fork);
 const all = document.createElement('div')
 all.setAttribute('class','self all');
 // all.setAttribute('data-after',"20");
 all.innerHTML='All';
-container.insertAdjacentElement('afterbegin',all);
+// container.insertAdjacentElement('afterbegin',all);
 
 
 const lower = document.createElement('div')
 lower.setAttribute('class', 'lower');
 container.insertAdjacentElement('beforeEnd', lower);
+const button_div= document.createElement('div');
+button_div.setAttribute('class','button_div');
+
+button_div.insertAdjacentElement('afterbegin',all);
+button_div.insertAdjacentElement('afterbegin',fork);
+button_div.insertAdjacentElement('afterbegin',self);
+lower.insertAdjacentElement('beforebegin',button_div);
+lower.insertAdjacentElement('beforebegin',dark_mode);
+
 
 
 function dividerline() {
     const hr = document.createElement('hr');
     hr.setAttribute('class', 'divider');
     lower.insertAdjacentElement('beforebegin', hr);
+    // hr.insertAdjacentElement('afterend',all);
 
 }
 function searchs(data, element) {
@@ -172,9 +186,9 @@ async function setdata(data) {
         const y = e.offsetY;
         const width= inside_image.offsetWidth;
         const height= inside_image.offsetHeight;
-        const ratiox= x/width*10;
-        const ratioy= y/height*10;
-        inside_image.style.transform = `translate(+${ratiox}% , +${ratioy}%) scale(2)`;
+        const ratiox= (x/width*10);
+        const ratioy= (y/height*10);
+        inside_image.style.transform = `translate(-${ratiox}% , +${ratioy}%) scale(2)`;
         console.log(`${x} and ${y}`);
     }))
     image.addEventListener('mouseout',(e)=>{
@@ -277,17 +291,64 @@ async function stickbutton(data,ele) {
     {
     if(ele.classList.contains('all'))
     {
-        all.setAttribute('data-after',corret_length);
+        var length=0;
+        var cont;
+        if(length<=corret_length)
+        {
+          cont  =  setInterval(() => {
+            all.setAttribute('data-after',length);
+            length= length+3;
+            if(length>corret_length)
+            {
+                all.setAttribute('data-after',corret_length);
+                clearInterval(cont)
+            }
+        }, 100);
     }
+
+    }
+
+
     else if(ele.classList.contains('self'))
     {
-        self.setAttribute('data-after',corret_length);
+        // self.setAttribute('data-after',corret_length);
+        // console.log('clicked');
+        var length=0;
+        var cont;
+        if(length<=corret_length)
+        {
+          cont  =  setInterval(() => {
+            self.setAttribute('data-after',length);
+            length= length+3;
+            if(length>corret_length)
+            {
+                self.setAttribute('data-after',corret_length);
+                clearInterval(cont)
+            }
+        }, 50);
+    }
     }
     else if(ele.classList.contains('fork'))
     {
-        fork.setAttribute('data-after',corret_length);
+        // fork.setAttribute('data-after',corret_length);
+        // console.log('forkclicked');
+        var length=0;
+        var cont;
+        if(length<=corret_length)
+        {
+          cont  =  setInterval(() => {
+            fork.setAttribute('data-after',length);
+            length= length+3;
+            if(length>corret_length)
+            {
+                fork.setAttribute('data-after',corret_length);
+                clearInterval(cont)
+            }
+        }, 100);
+    }
     }
 }
+
     data.forEach(element => {
         //    console.log(element);
         html1 += `
@@ -351,18 +412,18 @@ document.head.append(style);
 <a class="go_to_link b" href="${value.repos}" target="_blank">Click here</a>
 </div>
 <div class="email">
-<span class="el">Email: &nbsp;</span>
+<span class="el">Blog or Email: &nbsp;</span>
 <span class="b">
 ${personal.email? personal.email:"Email not available"}
 </span>
 </div>
 <div class="follow">
 <div class="followers">
- <div class="count b">${personal.followers}</div>
+ <div class="count follower b">${personal.followers}</div>
  <div class="fs">followers: &nbsp;</div>
 </div>
 <div class="following">
- <div class="count b">${personal.following}</div>
+ <div class="count followings b">${personal.following}</div>
  <div class="fg">following: &nbsp;</div>
 </div>
 </div>
@@ -380,6 +441,30 @@ cross.addEventListener('click',((e)=>{
     cover.innerHTML='';
 }))
 
+const follower =cover_content.querySelector('.follower');
+const following= cover_content.querySelector('.followings');
+  slow_interation(follower.innerHTML,follower);
+  slow_interation(following.innerHTML,following);
+}
+
+function slow_interation(number,element)
+{
+    var length=0;
+    var cont;
+    if(length<=number)
+    {
+      cont  =  setInterval(() => {
+        // fork.setAttribute('data-after',length);.
+             element.innerHTML= length;
+        length= length+3;
+        if(length>number)
+        {
+            // fork.setAttribute('data-after',corret_length);
+            element.innerHTML=number;
+            clearInterval(cont)
+        }
+    }, 100);
+}
 }
 
 

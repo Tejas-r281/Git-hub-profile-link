@@ -134,3 +134,40 @@ pointer-events: none;
 .b{
     color: black;
 }
+.dark_mode{
+    color: white;
+    position: absolute;
+    /* top: 10px; */
+    /* bottom: 20px; */
+    z-index: 300;
+    /* bottom: 0px; */
+    /* top: 0; */
+    left: 0;
+    height: 20px;
+    width: 100%;
+    /* background-color: white; */
+    /* bottom: -10px; */
+    /* z-index: 20; */
+    font-size: 1.5rem;
+    animation:  animate 6s infinite linear alternate-reverse;
+}
+
+@keyframes animate
+{
+    0%{
+        transform: translate(-50%);
+        /* transform: translate(0); */
+        /* width: 0%; */
+        /* word-wrap: none; */
+        color: black;
+    }
+    50%{
+        color: white;
+    }
+
+    100%{
+        transform: translate(100%);
+        color: green;
+    }
+}
+
